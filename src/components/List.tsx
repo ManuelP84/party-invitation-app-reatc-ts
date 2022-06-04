@@ -11,15 +11,19 @@ import {IState as IListProps} from '../App'
     }
   }
 
-const List: React.FC<IListProps> = ({people}):  React.ReactElement[] => {
-  return(people.map((person) => {
-      return(
-      <li className='List'>
-        <PersonInfo person={person}/>
-      </li>
-      )
-  })
-  );
+const List: React.FC<IListProps> = ({people}) => {  
+  const peopleList = people.map((person) => {
+    return(
+    <li className='List'>
+      <PersonInfo person={person}/>
+    </li>
+    )
+})
+  return(
+    <>
+    {peopleList}
+    </>
+  )
 };
 
 export default List;

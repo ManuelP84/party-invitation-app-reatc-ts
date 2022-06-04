@@ -20,19 +20,19 @@ function App() {
       name: "Manuel",
       url:"",
       age: 37,
-      note: ""
+      note: "Nota manuel"
     },
     {
       name: "Angie",
       url:"",
       age: 35,
-      note: ""
+      note: "Nota Angie"
     },
     {
       name: "Juanma",
       url:"",
       age: 5,
-      note: ""
+      note: "Nota juanma"
     }
   ])
 

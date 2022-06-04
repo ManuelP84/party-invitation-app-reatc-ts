@@ -1,8 +1,12 @@
 import * as React from 'react';
-import {IState as IAddToListProps} from '../App'
+import {IState as Props} from '../App'
 
+interface IProps {
+    people: Props["people"]
+    setPeople: React.Dispatch<React.SetStateAction<Props["people"]>>
+}
 
-const AddToList: React.FunctionComponent<IAddToListProps> = (props) => {
+const AddToList: React.FunctionComponent<IProps> = ({people, setPeople}) => {
 
   const [input, setInput] = React.useState({
       name: "",
@@ -18,8 +22,25 @@ const AddToList: React.FunctionComponent<IAddToListProps> = (props) => {
     })
   }
 
-  const clickHandler = () => {
-
+  const clickHandler = (): void => {
+    if(!input.name || !input.age || !input.img){
+        return
+    }
+    setPeople([
+        ...people,
+        {
+            name: input.name,
+            age: parseInt(input.age),
+            url: input.age,
+            note: input.note
+        } 
+    ])
+    setInput({
+        name: "",
+        age: "",
+        note: "",
+        img: ""
+    })
   }
 
 
@@ -34,7 +55,7 @@ const AddToList: React.FunctionComponent<IAddToListProps> = (props) => {
             name="name"
         />
         <input 
-            type="text" 
+            type="number" 
             placeholder="Age" 
             className="AddToList-input" 
             value={input.age}
@@ -53,15 +74,14 @@ const AddToList: React.FunctionComponent<IAddToListProps> = (props) => {
             placeholder="Notes" 
             className="AddToList-input" 
             value={input.note}
-            onChange={(e) => changeHandler}
+            onChange={changeHandler}
             name="note"
         />
         <button 
             className='AddToList-btn'
             type='button'
             onClick={clickHandler}
-        >
-            
+        > 
             Add to list!
         </button>
       </div>
